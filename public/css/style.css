@@ -1,0 +1,26 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.animated-background {
+/* Definisikan gradasi warna */
+    background: linear-gradient(-45deg, #36d6e5, #e96cc4, #3697dd, #f05cb2);
+    background-size: 400% 400%; /* Buat background lebih besar */
+    animation: gradientAnimation 10s ease infinite; /* Atur animasi */
+    height: 100vh;
+    width: 100%;
+}
+
+/* Definisikan pergerakan */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gambar{
+    width: 300px;
+    transition: transform 0.5s ease-in-out;
+}

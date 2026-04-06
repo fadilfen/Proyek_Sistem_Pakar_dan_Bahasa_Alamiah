@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Profile Image</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 300, 300);
+        gradient.addColorStop(0, '#36d6e5');
+        gradient.addColorStop(1, '#3697dd');
+        
+        // Draw circle
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(150, 150, 150, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Draw user icon
+        ctx.fillStyle = 'white';
+        // Head
+        ctx.beginPath();
+        ctx.arc(150, 120, 40, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Body
+        ctx.beginPath();
+        ctx.arc(150, 220, 70, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Download link
+        const link = document.createElement('a');
+        link.download = 'profil.png';
+        link.href = canvas.toDataURL();
+        link.textContent = 'Download profil.png';
+        link.style.display = 'block';
+        link.style.marginTop = '20px';
+        link.style.fontSize = '20px';
+        document.body.appendChild(link);
+        
+        // Auto download
+        link.click();
+    </script>
+    <p>Gambar profil.png akan otomatis terdownload. Pindahkan ke folder: storage/app/public/gambar/</p>
+</body>
+</html>
