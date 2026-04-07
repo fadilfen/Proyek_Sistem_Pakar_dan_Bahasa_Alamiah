@@ -1,58 +1,159 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏥 Sistem Pakar Diagnosa Penyakit Lambung
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Sistem pakar berbasis web untuk mendiagnosa penyakit lambung menggunakan metode Certainty Factor (CF) dengan integrasi Laravel + FastAPI Python
 
-## About Laravel
+## 🚀 Quick Start
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+### 1. Setup Database
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php artisan migrate:fresh
+php artisan db:seed --class=GejalaSeeder
+php artisan db:seed --class=PenyakitSeeder
+php artisan db:seed --class=RulesSeeder
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Python Dependencies
+```bash
+cd Mesin_Inferensi
+pip install -r requirements.txt
+```
 
-## Contributing
+### 3. Jalankan Aplikasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Terminal 1 - Laravel:**
+```bash
+php artisan serve
+# atau double click: start-laravel.bat
+```
 
-## Code of Conduct
+**Terminal 2 - FastAPI:**
+```bash
+cd Mesin_Inferensi
+uvicorn main:app --reload --port 8001
+# atau double click: start-fastapi.bat
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Akses Aplikasi
+- **Web App**: http://127.0.0.1:8000
+- **API Docs**: http://127.0.0.1:8001/docs
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📚 Dokumentasi Lengkap
 
-## License
+- 📖 [PANDUAN_LENGKAP.md](PANDUAN_LENGKAP.md) - Panduan instalasi & troubleshooting
+- 🔗 [INTEGRASI_LARAVEL_PYTHON.md](INTEGRASI_LARAVEL_PYTHON.md) - Cara kerja integrasi
+- 🗄️ [DATABASE_STRUCTURE.md](DATABASE_STRUCTURE.md) - Struktur database & query
+
+---
+
+## 🎯 Fitur
+
+- ✅ Login & Register User
+- ✅ Form Diagnosa dengan 10 Gejala Penyakit Lambung
+- ✅ Slider Tingkat Keyakinan (0.0 - 1.0)
+- ✅ Algoritma Certainty Factor (MB & MD)
+- ✅ Hasil Diagnosa dengan Visualisasi CF
+- ✅ Top 3 Kemungkinan Penyakit
+- ✅ Responsive Design
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Laravel 11** - PHP Framework
+- **FastAPI** - Python API Framework
+- **MySQL** - Database
+
+### Frontend
+- **Blade Template** - Laravel Templating
+- **CSS3** - Custom Styling
+- **JavaScript** - Interaktivitas
+
+### Algoritma
+- **Certainty Factor (CF)** - Metode inferensi
+- **MB (Measure of Belief)** - Tingkat kepercayaan
+- **MD (Measure of Disbelief)** - Tingkat ketidakpercayaan
+
+---
+
+## 📊 Data
+
+### Gejala (10)
+1. Nyeri ulu hati
+2. Mual
+3. Muntah
+4. Perut kembung
+5. Cepat kenyang
+6. Sendawa berlebihan
+7. Nyeri perut setelah makan
+8. Heartburn
+9. BAB berdarah/hitam
+10. Penurunan berat badan
+
+### Penyakit (4)
+1. **Gastritis (Maag)** - Peradangan lambung
+2. **GERD** - Asam lambung naik
+3. **Tukak Lambung** - Luka pada lambung
+4. **Dispepsia Fungsional** - Gangguan pencernaan
+
+### Rules (22)
+Basis pengetahuan dengan nilai MB dan MD untuk setiap kombinasi gejala-penyakit
+
+---
+
+## 🔬 Algoritma Certainty Factor
+
+### Rumus Dasar
+```
+CF = MB - MD
+```
+
+### CF dengan Nilai User
+```
+CF_final = CF_pakar × nilai_user
+```
+
+### Kombinasi CF (Multiple Gejala)
+```
+CF_combine = CF1 + CF2 × (1 - CF1)
+```
+
+---
+
+## 📸 Screenshots
+
+### Login Page
+Halaman login dengan desain modern dan gradient animation
+
+### Dashboard
+Menu navigasi dengan card-based design
+
+### Form Diagnosa
+Checkbox gejala + slider tingkat keyakinan
+
+### Hasil Diagnosa
+Visualisasi CF dengan progress bar dan top 3 hasil
+
+---
+
+## 🤝 Contributing
+
+Proyek ini dibuat untuk tugas Sistem Pakar dan Bahasa Ilmiah.
+
+---
+
+## 📝 License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+## 👨‍💻 Developer
+
+Dikembangkan dengan ❤️ menggunakan Laravel & FastAPI
+
+---
+
+**Happy Coding! 🚀**

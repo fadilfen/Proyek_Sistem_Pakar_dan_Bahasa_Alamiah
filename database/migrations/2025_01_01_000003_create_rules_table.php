@@ -11,7 +11,8 @@ return new class extends Migration {
             $table->id('id_rule');
             $table->foreignId('id_penyakit')->constrained('penyakit', 'id_penyakit')->cascadeOnDelete();
             $table->foreignId('id_gejala')->constrained('gejala', 'id_gejala')->cascadeOnDelete();
-            $table->decimal('cf_pakar', 3, 2); // nilai antara -1.00 s/d 1.00
+            $table->decimal('mb', 3, 2);
+            $table->decimal('md', 3, 2); 
             $table->timestamps();
         });
     }

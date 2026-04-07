@@ -30,8 +30,18 @@ class AuthController extends Controller
             ->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            session(['user_id' => $user->id, 'username' => $user->username]);
-            return redirect()->route('index');
+            session([
+                'user_id' => $user->id, 
+                'username' => $user->username,
+                'role' => $user->role
+            ]);
+            
+            // Redirect berdasarkan role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+            
+            return redirect()->route('diagnosa');
         }
 
         return back()->with('error', 'Username atau password salah!');

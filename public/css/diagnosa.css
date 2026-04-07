@@ -1,0 +1,777 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.animated-background {
+    background: linear-gradient(-45deg, #36d6e5, #e96cc4, #3697dd, #f05cb2);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header Top */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-text {
+    color: #333;
+    font-size: 15px;
+}
+
+.welcome-text strong {
+    color: #36d6e5;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-logout {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-logout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn-back {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(54, 214, 229, 0.4);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 80px 20px 20px 20px; /* Tambah padding top untuk header */
+}
+
+.diagnosa-card, .hasil-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.diagnosa-card::-webkit-scrollbar, .hasil-card::-webkit-scrollbar {
+    width: 10px;
+}
+
+.diagnosa-card::-webkit-scrollbar-track, .hasil-card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.diagnosa-card::-webkit-scrollbar-thumb, .hasil-card::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    border-radius: 10px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #333;
+    margin: 0 0 10px 0;
+    font-size: 28px;
+}
+
+.header p {
+    color: #666;
+    margin: 0;
+    font-size: 15px;
+}
+
+.timestamp {
+    color: #999;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.error-message {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.gejala-container {
+    margin-bottom: 30px;
+}
+
+.gejala-item {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.gejala-item:hover {
+    border-color: #36d6e5;
+    box-shadow: 0 4px 15px rgba(54, 214, 229, 0.2);
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.gejala-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+.gejala-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    font-size: 15px;
+}
+
+.kode {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.nama {
+    color: #333;
+    font-weight: 500;
+}
+
+.slider-wrapper {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px dashed #dee2e6;
+}
+
+.slider-label {
+    display: block;
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.slider-label span {
+    color: #36d6e5;
+    font-size: 16px;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #dee2e6;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(54, 214, 229, 0.5);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    cursor: pointer;
+    border: none;
+}
+
+.slider-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 11px;
+    color: #6c757d;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-submit, .btn-reset, .btn-primary, .btn-secondary {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-submit, .btn-primary {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+}
+
+.btn-submit:hover, .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(54, 214, 229, 0.5);
+}
+
+.btn-reset, .btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+}
+
+.btn-reset:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-info {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-info p {
+    margin: 0;
+    color: #856404;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.link-back {
+    color: #36d6e5;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.link-back:hover {
+    text-decoration: underline;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+
+/* Hasil Diagnosa Styles */
+.hasil-utama {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(54, 214, 229, 0.3);
+}
+
+.badge-utama {
+    background: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.penyakit-nama {
+    font-size: 32px;
+    margin: 10px 0 20px 0;
+    font-weight: bold;
+}
+
+.cf-score {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cf-label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.cf-value {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cf-bar {
+    background: rgba(255, 255, 255, 0.3);
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.cf-fill {
+    background: white;
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+/* Detail Penyakit */
+.detail-penyakit {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.detail-section h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.detail-section p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 15px;
+    margin: 0;
+}
+
+.solusi-section {
+    background: #e8f5e9;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #4caf50;
+}
+
+.solusi-section h3 {
+    color: #2e7d32;
+    border-bottom-color: #4caf50;
+}
+
+.solusi-section p {
+    color: #1b5e20;
+}
+
+.top-hasil-section {
+    margin-bottom: 30px;
+}
+
+.top-hasil-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.top-hasil-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hasil-item {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+}
+
+.hasil-rank {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.hasil-content {
+    flex: 1;
+}
+
+.hasil-nama {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.hasil-cf-bar {
+    background: #dee2e6;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.hasil-cf-fill {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.hasil-cf-text {
+    font-size: 13px;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.hasil-detail {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px dashed #dee2e6;
+}
+
+.hasil-deskripsi,
+.hasil-solusi {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #495057;
+    margin: 8px 0;
+}
+
+.hasil-deskripsi strong,
+.hasil-solusi strong {
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.hasil-solusi {
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.hasil-solusi strong {
+    color: #2e7d32;
+}
+
+.info-box {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.info-box h4 {
+    color: #856404;
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+
+.info-box ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #856404;
+}
+
+.info-box li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.error-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.error-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.error-state h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.error-state p {
+    color: #6c757d;
+}
+
+/* Riwayat Styles */
+.riwayat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.riwayat-item {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.riwayat-item:hover {
+    border-color: #36d6e5;
+    box-shadow: 0 4px 15px rgba(54, 214, 229, 0.2);
+    transform: translateY(-2px);
+}
+
+.riwayat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #e9ecef;
+}
+
+.riwayat-date {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.riwayat-cf {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.riwayat-content h3 {
+    color: #333;
+    margin: 0 0 15px 0;
+    font-size: 20px;
+}
+
+.riwayat-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-detail {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.btn-detail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(54, 214, 229, 0.4);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+/* Gejala Terpilih */
+.gejala-terpilih-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gejala-terpilih-section h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.gejala-terpilih-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gejala-terpilih-item {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gejala-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gejala-kode {
+    background: linear-gradient(135deg, #36d6e5, #3697dd);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.gejala-nama {
+    color: #333;
+    font-weight: 500;
+}
+
+.gejala-nilai {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.gejala-nilai strong {
+    color: #36d6e5;
+}
+
+@media (max-width: 768px) {
+    .diagnosa-card, .hasil-card {
+        padding: 25px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .penyakit-nama {
+        font-size: 24px;
+    }
+
+    .cf-value {
+        font-size: 28px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .gejala-label {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
