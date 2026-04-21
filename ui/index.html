@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCheck - Sistem Diagnosa Penyakit Lambung</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <img src="/static/js/logo.png" alt="GastroCare Logo">
+                </div>
+                <span class="brand-text">GastroCare</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link active">Diagnosa</a>
+                <a href="#about" class="nav-link">Tentang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Landing Page -->
+        <section id="landingPage" class="landing-page">
+            <div class="hero-section">
+                <div class="hero-badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1L10.163 5.38L15 6.12L11.5 9.545L12.326 14.36L8 12.09L3.674 14.36L4.5 9.545L1 6.12L5.837 5.38L8 1Z" fill="currentColor"/>
+                    </svg>
+                    <span>Sistem Pakar Berbasis AI</span>
+                </div>
+                <h1 class="hero-title">Diagnosa Penyakit Lambung dengan <span class="gradient-text">Certainty Factor</span></h1>
+                <p class="hero-description">Sistem pakar cerdas yang membantu Anda mengidentifikasi penyakit lambung berdasarkan gejala yang dialami. Akurat, cepat, dan mudah digunakan.</p>
+                
+                <div class="hero-actions">
+                    <button onclick="mulaiDiagnosa()" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M9 2C5.13 2 2 5.13 2 9c0 3.87 3.13 7 7 7 1.53 0 2.94-.5 4.09-1.34l4.63 4.63 1.41-1.41-4.63-4.63C15.5 11.94 16 10.53 16 9c0-3.87-3.13-7-7-7zm0 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z" fill="currentColor"/>
+                        </svg>
+                        Mulai Diagnosa Sekarang
+                    </button>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Gejala Teridentifikasi</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Jenis Penyakit</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Akurasi Sistem</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div id="about" class="about-section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" fill="currentColor" opacity="0.2"/>
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 2.18l8 3.6v9.22c0 4.45-3.08 8.61-7 9.77V4.18z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>Akurat & Terpercaya</h3>
+                        <p>Menggunakan metode Certainty Factor dengan basis pengetahuan medis yang tervalidasi</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor" opacity="0.2"/>
+                                <path d="M13 7h-2v5.41l4.29 4.29 1.41-1.41L13 11.59V7z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>Cepat & Efisien</h3>
+                        <p>Proses diagnosa hanya membutuhkan waktu 2-3 menit dengan hasil yang komprehensif</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h3>Mudah Digunakan</h3>
+                        <p>Interface yang intuitif dan user-friendly, cocok untuk semua kalangan</p>
+                    </div>
+                </div>
+
+                <!-- Info Kelompok -->
+                <div class="team-info">
+                    <h3>Informasi Kelompok</h3>
+                    <div class="team-grid">
+                        <div class="team-item">
+                            <span class="team-label">Nama Kelompok</span>
+                            <span class="team-value">BT + B</span>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-label">Dosen Pembimbing</span>
+                            <span class="team-value">Chalifa Chazar S.T., M. T.</span>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-label">Mata Kuliah</span>
+                            <span class="team-value">Sistem Pakar & Bahasa Alamiah</span>
+                        </div>
+                        <div class="team-members">
+                            <span class="team-label">Anggota Kelompok</span>
+                            <div class="team-item">
+                                <span class="team-value">1. 152024044 Muhammad Naufal</span>
+                            </div>
+                            <div class="team-item">
+                                <span class="team-value">2. 152024049 Julius Satria Agung</span>
+                            </div>
+                            <div class="team-item">
+                                <span class="team-value">3. 152024052 Fadil Muhamad Fenegar</span>
+                            </div>
+                            <div class="team-item">
+                                <span class="team-value">4. 152024053 Fadhlan Muhammad Dhafin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagnosa Page -->
+        <section id="diagnosaPage" class="diagnosa-page" style="display: none;">
+            <div class="diagnosa-container">
+                <!-- Question Card -->
+                <div class="question-card">
+                    <div class="progress-info">
+                        <button onclick="kembaliKeHome()" class="btn-back">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <span class="progress-text">Pertanyaan <span id="currentNumber">1</span> dari 10</span>
+                    </div>
+                    <div class="question-header">
+                        <div class="question-icon">
+                            <img src="/static/js/lambung.png" alt="Lambung Icon" style="width: 28px; height: 28px; object-fit: contain;">
+                        </div>
+                        <h2 class="question-title" id="gejalaNama">Nyeri ulu hati</h2>
+                    </div>
+                    
+                    <p class="question-subtitle">Seberapa yakin Anda mengalami gejala ini?</p>
+                    
+                    <div class="likert-scale">
+                        <button class="likert-option" onclick="pilihKeyakinan(0.0)" data-value="0.0">
+                            <div class="likert-icon">😟</div>
+                            <div class="likert-label">Sangat Tidak Yakin</div>
+                            <div class="likert-value">0%</div>
+                        </button>
+                        <button class="likert-option" onclick="pilihKeyakinan(0.25)" data-value="0.25">
+                            <div class="likert-icon">😐</div>
+                            <div class="likert-label">Tidak Yakin</div>
+                            <div class="likert-value">25%</div>
+                        </button>
+                        <button class="likert-option" onclick="pilihKeyakinan(0.5)" data-value="0.5">
+                            <div class="likert-icon">🤔</div>
+                            <div class="likert-label">Ragu-ragu</div>
+                            <div class="likert-value">50%</div>
+                        </button>
+                        <button class="likert-option" onclick="pilihKeyakinan(0.75)" data-value="0.75">
+                            <div class="likert-icon">😊</div>
+                            <div class="likert-label">Yakin</div>
+                            <div class="likert-value">75%</div>
+                        </button>
+                        <button class="likert-option" onclick="pilihKeyakinan(1.0)" data-value="1.0">
+                            <div class="likert-icon">😃</div>
+                            <div class="likert-label">Sangat Yakin</div>
+                            <div class="likert-value">100%</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading -->
+        <div id="loadingSection" class="loading-section" style="display: none;">
+            <div class="loading-card">
+                <div class="loading-spinner"></div>
+                <h3>Menganalisis Data Anda</h3>
+                <p>Sistem sedang memproses gejala yang Anda alami...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Hasil -->
+    <div id="hasilModal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div id="hasilContent"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
