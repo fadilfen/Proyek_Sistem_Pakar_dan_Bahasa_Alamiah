@@ -407,6 +407,12 @@ body {
     padding: var(--spacing-lg);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.question-card.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 .progress-info {

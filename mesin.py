@@ -9,7 +9,18 @@ GEJALA = [
     {'kode': 'G07', 'nama': 'Nyeri perut setelah makan'},
     {'kode': 'G08', 'nama': 'Heartburn (rasa panas di dada)'},
     {'kode': 'G09', 'nama': 'BAB berdarah atau hitam'},
-    {'kode': 'G10', 'nama': 'Penurunan berat badan'}
+    {'kode': 'G10', 'nama': 'Penurunan berat badan'},
+    {'kode': 'G11', 'nama': 'Nafsu makan menurun'},
+    {'kode': 'G12', 'nama': 'Mulut terasa asam atau pahit'},
+    {'kode': 'G13', 'nama': 'Nyeri dada'},
+    {'kode': 'G14', 'nama': 'Kesulitan menelan'},
+    {'kode': 'G15', 'nama': 'Suara serak'},
+    {'kode': 'G16', 'nama': 'Bau mulut'},
+    {'kode': 'G17', 'nama': 'Batuk kering'},
+    {'kode': 'G18', 'nama': 'Diare'},
+    {'kode': 'G19', 'nama': 'Kram perut'},
+    {'kode': 'G20', 'nama': 'Demam'},
+    {'kode': 'G21', 'nama': 'Muntah darah'}
 ]
 
 # Data Penyakit
@@ -17,26 +28,44 @@ PENYAKIT = [
     {
         'kode': 'P01',
         'nama': 'Gastritis (Maag)',
-        'deskripsi': 'Gastritis adalah peradangan pada lapisan lambung yang dapat menyebabkan nyeri dan ketidaknyamanan. Kondisi ini dapat bersifat akut atau kronis.',
-        'solusi': 'Hindari makanan pedas dan asam, makan teratur, kurangi stres, hindari alkohol dan rokok. Konsultasi dengan dokter untuk pengobatan yang tepat.'
+        'deskripsi': 'Peradangan pada dinding lambung yang sering disebabkan oleh peningkatan asam lambung, infeksi bakteri H. pylori, atau iritasi akibat obat-obatan. Kondisi ini dapat bersifat akut maupun kronis.',
+        'solusi': 'Hindari makanan pedas dan asam, makan teratur, kurangi stres, hindari alkohol dan rokok. Konsultasi dengan dokter untuk pengobatan yang tepat termasuk antasida atau antibiotik jika diperlukan.'
     },
     {
         'kode': 'P02',
         'nama': 'GERD (Gastroesophageal Reflux Disease)',
-        'deskripsi': 'GERD adalah kondisi dimana asam lambung naik ke kerongkongan, menyebabkan sensasi terbakar di dada (heartburn) dan gejala lainnya.',
+        'deskripsi': 'Penyakit kronis di mana asam lambung naik kembali ke kerongkongan (refluks), seringkali karena melemahnya otot pembatas lambung (sfingter esofagus bawah).',
         'solusi': 'Hindari makanan berlemak dan pedas, jangan langsung berbaring setelah makan, tinggikan kepala saat tidur, kurangi porsi makan. Konsultasi dengan dokter untuk terapi yang sesuai.'
     },
     {
         'kode': 'P03',
-        'nama': 'Tukak Lambung (Ulkus Peptikum)',
-        'deskripsi': 'Tukak lambung adalah luka terbuka pada lapisan dalam lambung yang dapat menyebabkan nyeri dan komplikasi serius jika tidak diobati.',
-        'solusi': 'Hindari NSAID, kurangi stres, hindari alkohol dan rokok, makan makanan yang mudah dicerna. SEGERA konsultasi dengan dokter karena memerlukan pengobatan medis.'
+        'nama': 'Tukak Lambung (Peptic Ulcer)',
+        'deskripsi': 'Perlukaan terbuka pada dinding lambung akibat terkikis oleh asam lambung. Sering disebabkan oleh infeksi H. pylori atau penggunaan obat anti-inflamasi non-steroid (NSAID) jangka panjang.',
+        'solusi': 'Hindari NSAID, kurangi stres, hindari alkohol dan rokok, makan makanan yang mudah dicerna. SEGERA konsultasi dengan dokter karena memerlukan pengobatan medis seperti antibiotik dan penghambat pompa proton.'
     },
     {
         'kode': 'P04',
-        'nama': 'Dispepsia Fungsional',
-        'deskripsi': 'Dispepsia fungsional adalah gangguan pencernaan kronis tanpa penyebab organik yang jelas, ditandai dengan rasa tidak nyaman di perut bagian atas.',
-        'solusi': 'Makan porsi kecil tapi sering, hindari makanan pemicu, kelola stres dengan baik, olahraga teratur. Konsultasi dengan dokter untuk evaluasi lebih lanjut.'
+        'nama': 'Dispepsia',
+        'deskripsi': 'Istilah umum untuk kumpulan gejala ketidaknyamanan pada perut bagian atas tanpa penyebab organik yang jelas. Dapat dipicu oleh stres, pola makan tidak teratur, atau konsumsi obat-obatan tertentu.',
+        'solusi': 'Makan porsi kecil tapi sering, hindari makanan pemicu, kelola stres dengan baik, olahraga teratur. Konsultasi dengan dokter untuk evaluasi dan terapi lebih lanjut.'
+    },
+    {
+        'kode': 'P05',
+        'nama': 'Gastroparesis',
+        'deskripsi': 'Kondisi di mana lambung mengalami kelumpuhan parsial sehingga lambat dalam mengosongkan makanan ke usus kecil. Sering terjadi pada penderita diabetes dan dapat disebabkan oleh kerusakan saraf vagus.',
+        'solusi': 'Makan dalam porsi kecil dan sering, pilih makanan rendah lemak dan serat, hindari makanan padat. Konsultasi dokter untuk pengelolaan gula darah dan obat-obatan yang membantu pergerakan lambung.'
+    },
+    {
+        'kode': 'P06',
+        'nama': 'Gastroenteritis',
+        'deskripsi': 'Peradangan pada lambung dan usus, sering disebut "flu perut" karena infeksi virus, bakteri, atau parasit. Penyebab umum adalah virus Norovirus atau bakteri Salmonella.',
+        'solusi': 'Perbanyak minum cairan untuk mencegah dehidrasi, istirahat cukup, konsumsi makanan ringan seperti bubur. Segera ke dokter jika gejala berat atau berlangsung lebih dari beberapa hari.'
+    },
+    {
+        'kode': 'P07',
+        'nama': 'Kanker Lambung',
+        'deskripsi': 'Pertumbuhan sel tidak normal (malignan) di lambung. Seringkali tidak menunjukkan gejala pada stadium awal dan baru terdeteksi pada stadium lanjut. Faktor risiko meliputi infeksi H. pylori kronis, merokok, dan diet tinggi garam.',
+        'solusi': 'SEGERA konsultasi dengan dokter spesialis onkologi. Penanganan dapat meliputi pembedahan, kemoterapi, atau radioterapi tergantung stadium. Deteksi dini sangat penting untuk meningkatkan peluang kesembuhan.'
     }
 ]
 
@@ -49,28 +78,60 @@ RULES = [
     {'gejala': 'G04', 'penyakit': 'P01', 'mb': 0.6, 'md': 0.15},
     {'gejala': 'G05', 'penyakit': 'P01', 'mb': 0.4, 'md': 0.1},
     {'gejala': 'G07', 'penyakit': 'P01', 'mb': 0.7, 'md': 0.2},
-    
+    {'gejala': 'G08', 'penyakit': 'P01', 'mb': 0.5, 'md': 0.15},
+    {'gejala': 'G11', 'penyakit': 'P01', 'mb': 0.6, 'md': 0.1},
+
     # GERD (P02)
     {'gejala': 'G06', 'penyakit': 'P02', 'mb': 0.8, 'md': 0.1},
     {'gejala': 'G08', 'penyakit': 'P02', 'mb': 0.9, 'md': 0.05},
     {'gejala': 'G01', 'penyakit': 'P02', 'mb': 0.5, 'md': 0.2},
     {'gejala': 'G02', 'penyakit': 'P02', 'mb': 0.4, 'md': 0.15},
     {'gejala': 'G03', 'penyakit': 'P02', 'mb': 0.3, 'md': 0.1},
-    
+    {'gejala': 'G12', 'penyakit': 'P02', 'mb': 0.8, 'md': 0.05},
+    {'gejala': 'G13', 'penyakit': 'P02', 'mb': 0.7, 'md': 0.1},
+    {'gejala': 'G14', 'penyakit': 'P02', 'mb': 0.6, 'md': 0.15},
+    {'gejala': 'G15', 'penyakit': 'P02', 'mb': 0.6, 'md': 0.1},
+    {'gejala': 'G16', 'penyakit': 'P02', 'mb': 0.5, 'md': 0.1},
+    {'gejala': 'G17', 'penyakit': 'P02', 'mb': 0.5, 'md': 0.15},
+
     # Tukak Lambung (P03)
     {'gejala': 'G01', 'penyakit': 'P03', 'mb': 0.8, 'md': 0.1},
     {'gejala': 'G07', 'penyakit': 'P03', 'mb': 0.8, 'md': 0.1},
     {'gejala': 'G09', 'penyakit': 'P03', 'mb': 0.9, 'md': 0.05},
     {'gejala': 'G02', 'penyakit': 'P03', 'mb': 0.6, 'md': 0.15},
     {'gejala': 'G03', 'penyakit': 'P03', 'mb': 0.5, 'md': 0.1},
+    {'gejala': 'G04', 'penyakit': 'P03', 'mb': 0.5, 'md': 0.15},
     {'gejala': 'G10', 'penyakit': 'P03', 'mb': 0.6, 'md': 0.2},
-    
-    # Dispepsia Fungsional (P04)
+
+    # Dispepsia (P04)
     {'gejala': 'G04', 'penyakit': 'P04', 'mb': 0.7, 'md': 0.1},
     {'gejala': 'G05', 'penyakit': 'P04', 'mb': 0.8, 'md': 0.1},
     {'gejala': 'G01', 'penyakit': 'P04', 'mb': 0.5, 'md': 0.2},
     {'gejala': 'G02', 'penyakit': 'P04', 'mb': 0.5, 'md': 0.2},
-    {'gejala': 'G06', 'penyakit': 'P04', 'mb': 0.4, 'md': 0.15}
+    {'gejala': 'G06', 'penyakit': 'P04', 'mb': 0.4, 'md': 0.15},
+    {'gejala': 'G08', 'penyakit': 'P04', 'mb': 0.5, 'md': 0.1},
+
+    # Gastroparesis (P05)
+    {'gejala': 'G02', 'penyakit': 'P05', 'mb': 0.8, 'md': 0.1},
+    {'gejala': 'G03', 'penyakit': 'P05', 'mb': 0.8, 'md': 0.1},
+    {'gejala': 'G04', 'penyakit': 'P05', 'mb': 0.7, 'md': 0.1},
+    {'gejala': 'G05', 'penyakit': 'P05', 'mb': 0.8, 'md': 0.05},
+    {'gejala': 'G11', 'penyakit': 'P05', 'mb': 0.6, 'md': 0.15},
+
+    # Gastroenteritis (P06)
+    {'gejala': 'G18', 'penyakit': 'P06', 'mb': 0.9, 'md': 0.05},
+    {'gejala': 'G03', 'penyakit': 'P06', 'mb': 0.8, 'md': 0.1},
+    {'gejala': 'G19', 'penyakit': 'P06', 'mb': 0.8, 'md': 0.1},
+    {'gejala': 'G20', 'penyakit': 'P06', 'mb': 0.7, 'md': 0.1},
+    {'gejala': 'G02', 'penyakit': 'P06', 'mb': 0.6, 'md': 0.15},
+
+    # Kanker Lambung (P07)
+    {'gejala': 'G01', 'penyakit': 'P07', 'mb': 0.7, 'md': 0.2},
+    {'gejala': 'G10', 'penyakit': 'P07', 'mb': 0.8, 'md': 0.1},
+    {'gejala': 'G14', 'penyakit': 'P07', 'mb': 0.7, 'md': 0.15},
+    {'gejala': 'G21', 'penyakit': 'P07', 'mb': 0.9, 'md': 0.05},
+    {'gejala': 'G02', 'penyakit': 'P07', 'mb': 0.5, 'md': 0.2},
+    {'gejala': 'G11', 'penyakit': 'P07', 'mb': 0.7, 'md': 0.1},
 ]
 
 # Fungsi Certainty Factor
@@ -79,7 +140,6 @@ def hitung_cf_per_gejala(mb, md):
     return mb - md
 
 def combine_cf(cf1, cf2):
-    """Menggabungkan dua nilai CF"""
     return cf1 + cf2 * (1 - cf1)
 
 def hitung_cf(gejala_user):
@@ -174,7 +234,9 @@ if __name__ == '__main__':
     gejala_test = {
         'G01': 1.0,  # Nyeri ulu hati
         'G02': 0.8,  # Mual
-        'G04': 0.7   # Perut kembung
+        'G04': 0.7,  # Perut kembung
+        'G18': 0.9,  # Diare
+        'G20': 0.6   # Demam
     }
     
     hasil = diagnosa(gejala_test)

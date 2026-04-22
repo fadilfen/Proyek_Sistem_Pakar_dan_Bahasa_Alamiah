@@ -9,7 +9,18 @@ const dataGejala = [
     { kode: 'G07', nama: 'Nyeri perut setelah makan' },
     { kode: 'G08', nama: 'Heartburn (rasa panas di dada)' },
     { kode: 'G09', nama: 'BAB berdarah atau hitam' },
-    { kode: 'G10', nama: 'Penurunan berat badan' }
+    { kode: 'G10', nama: 'Penurunan berat badan' },
+    { kode: 'G11', nama: 'Nafsu makan menurun' },
+    { kode: 'G12', nama: 'Mulut terasa asam atau pahit' },
+    { kode: 'G13', nama: 'Nyeri dada' },
+    { kode: 'G14', nama: 'Kesulitan menelan' },
+    { kode: 'G15', nama: 'Suara serak' },
+    { kode: 'G16', nama: 'Bau mulut' },
+    { kode: 'G17', nama: 'Batuk kering' },
+    { kode: 'G18', nama: 'Diare' },
+    { kode: 'G19', nama: 'Kram perut' },
+    { kode: 'G20', nama: 'Demam' },
+    { kode: 'G21', nama: 'Muntah darah' }
 ];
 
 // ===== STATE MANAGEMENT =====
@@ -68,14 +79,22 @@ function pilihKeyakinan(nilai) {
         selectedOption.classList.add('selected');
     }
     
+    // Animasi keluar
+    const questionCard = document.querySelector('.question-card');
+    if (questionCard) {
+        questionCard.classList.add('fade-out');
+    }
+    
     // Delay untuk animasi
     setTimeout(() => {
         currentQuestionIndex++;
         
         if (currentQuestionIndex < dataGejala.length) {
             tampilkanPertanyaan();
+            if (questionCard) questionCard.classList.remove('fade-out');
         } else {
             prosesHasil();
+            if (questionCard) questionCard.classList.remove('fade-out');
         }
     }, 300);
 }
