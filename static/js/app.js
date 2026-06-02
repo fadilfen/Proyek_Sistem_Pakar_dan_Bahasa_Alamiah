@@ -151,32 +151,28 @@ function tampilkanHasil(data) {
     
     const hasilHTML = `
         <div class="hasil-container">
-            <!-- Header Hasil -->
+            <!-- Header compact -->
             <div class="hasil-header">
                 <div class="hasil-icon-large">
                     <img src="/static/js/lambung.png" alt="Lambung Icon">
                 </div>
-                <h2>Hasil Diagnosa</h2>
-                <p class="hasil-subtitle">Berdasarkan gejala yang Anda alami</p>
+                <div class="hasil-header-text">
+                    <h2>Hasil Diagnosa</h2>
+                    <p class="hasil-subtitle">Berdasarkan gejala yang Anda alami</p>
+                </div>
             </div>
 
             <!-- Diagnosa Utama -->
             <div class="diagnosa-utama">
-                <div class="diagnosa-badge">Diagnosa Utama</div>
-                <h3 class="diagnosa-nama">${hasilUtama.penyakit}</h3>
-                
-                <div class="cf-display">
-                    <div class="cf-label">Tingkat Keyakinan (CF)</div>
+                <div class="diagnosa-top-row">
+                    <div class="diagnosa-badge">Diagnosa Utama</div>
                     <div class="cf-value">${(hasilUtama.cf * 100).toFixed(1)}%</div>
                 </div>
-                
+                <h3 class="diagnosa-nama">${hasilUtama.penyakit}</h3>
                 <div class="cf-bar-container">
                     <div class="cf-bar-fill" style="width: 0%;" data-width="${hasilUtama.cf * 100}"></div>
                 </div>
-                
-                <div class="cf-interpretation">
-                    ${interpretasiCF(hasilUtama.cf)}
-                </div>
+                <div class="cf-interpretation">${interpretasiCF(hasilUtama.cf)}</div>
             </div>
 
             <!-- Deskripsi -->
@@ -209,7 +205,7 @@ function tampilkanHasil(data) {
                             <div class="kemungkinan-item">
                                 <div class="kemungkinan-info">
                                     <span class="kemungkinan-nama">${p.penyakit}</span>
-                                    <span class="kemungkinan-cf">CF: ${(p.cf * 100).toFixed(1)}%</span>
+                                    <span class="kemungkinan-cf">${(p.cf * 100).toFixed(1)}%</span>
                                 </div>
                                 <div class="kemungkinan-bar">
                                     <div class="kemungkinan-bar-fill" style="width: 0%;" data-width="${p.cf * 100}"></div>
@@ -220,7 +216,7 @@ function tampilkanHasil(data) {
                 </div>
             ` : ''}
 
-            <!-- Warning Medis -->
+            <!-- Warning -->
             <div class="medical-warning">
                 <div class="warning-icon">⚠️</div>
                 <div class="warning-content">
@@ -231,7 +227,7 @@ function tampilkanHasil(data) {
             <!-- Actions -->
             <div class="hasil-actions">
                 <button onclick="diagnosaBaru()" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/>
                     </svg>
                     Diagnosa Baru
