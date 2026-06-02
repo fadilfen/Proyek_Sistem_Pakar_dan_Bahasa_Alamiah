@@ -133,7 +133,7 @@ body {
 
 .hero-section {
     text-align: center;
-    padding: var(--spacing-lg) 0 var(--spacing-3xl) 0;
+    padding: var(--spacing-lg) 0;
 }
 
 .hero-badge {
@@ -169,7 +169,7 @@ body {
     font-size: 20px;
     color: var(--neutral-600);
     max-width: 700px;
-    margin: 0 auto var(--spacing-2xl);
+    margin: 0 auto var(--spacing-xl);
     line-height: 1.7;
 }
 
@@ -263,7 +263,8 @@ body {
     padding: var(--spacing-xl);
     background: var(--white);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 4px 20px rgba(0, 102, 255, 0.08);
+    border: 1px solid var(--neutral-200);
     max-width: 800px;
     margin: 0 auto;
 }
@@ -281,7 +282,7 @@ body {
 
 .stat-label {
     font-size: 14px;
-    color: var(--neutral-600);
+    color: var(--neutral-500);
     margin-top: var(--spacing-xs);
 }
 
@@ -293,7 +294,7 @@ body {
 
 /* ===== ABOUT SECTION ===== */
 .about-section {
-    margin-top: 27px;
+    margin-top: var(--spacing-xl);
 }
 
 .about-grid {
@@ -307,38 +308,41 @@ body {
     background: var(--white);
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 20px rgba(0, 102, 255, 0.08);
+    border: 1px solid var(--neutral-200);
+    border-top: 3px solid var(--primary-blue);
     transition: all var(--transition-base);
 }
 
 .about-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 12px 28px rgba(0, 102, 255, 0.12);
 }
 
 .about-icon {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     background: var(--primary-blue-light);
     color: var(--primary-blue);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .about-card h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--neutral-900);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     font-family: var(--font-secondary);
 }
 
 .about-card p {
     color: var(--neutral-600);
     line-height: 1.7;
+    font-size: 14px;
 }
 
 /* ===== TEAM INFO ===== */
@@ -346,11 +350,13 @@ body {
     background: var(--white);
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 20px rgba(0, 102, 255, 0.08);
+    border: 1px solid var(--neutral-200);
+    border-top: 3px solid var(--primary-blue);
 }
 
 .team-info h3 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--neutral-900);
     margin-bottom: var(--spacing-lg);
@@ -376,9 +382,9 @@ body {
 }
 
 .team-label {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--neutral-500);
+    color: var(--primary-blue);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
