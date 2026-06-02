@@ -329,14 +329,18 @@ class GastroChatbot:
         g_detail = next((g for g in GEJALA if g['kode'] == gejala_lanjutan_terpilih), None)
         gejala_ditanyakan.append(gejala_lanjutan_terpilih)
 
+        # Ambil teks pertanyaan dan ubah huruf pertama jadi kecil untuk di tengah kalimat
+        pertanyaan_utuh = g_detail.get('pertanyaan', f"apakah Anda juga merasakan {g_detail['nama']}?")
+        tanya_lower = pertanyaan_utuh[0].lower() + pertanyaan_utuh[1:]
+
         # Variasi template pertanyaan agar lebih natural, hangat, dan profesional
         template_pertanyaan = [
-            f"Saya telah mencatat keluhan Anda. Untuk membantu mengidentifikasi kemungkinan **{penyakit_target_nama}**, apakah Anda juga merasakan **{g_detail['nama']}**? Bagaimana frekuensinya?",
-            f"Catatan gejala Anda sudah diperbarui. Sebagai langkah analisis lebih lanjut, apakah Anda mengalami **{g_detail['nama']}** akhir-akhir ini?",
-            f"Untuk mengerucutkan analisis Certainty Factor dengan akurat, saya perlu tahu: apakah keluhan **{g_detail['nama']}** juga turut Anda rasakan?",
-            f"Apakah Anda juga merasakan gejala **{g_detail['nama']}**? (Anda bisa menjawab dengan kata keterangan seperti: sering, kadang-kadang, jarang, atau tidak pernah)",
-            f"Untuk memastikan diagnosis awal yang akurat, apakah Anda juga mengalami keluhan **{g_detail['nama']}**?",
-            f"Sangat penting bagi kami untuk mengevaluasi keluhan ini secara mendalam. Apakah Anda juga merasakan **{g_detail['nama']}**? Seberapa sering hal itu terjadi?"
+            f"Saya telah mencatat keluhan Anda. Untuk membantu mengidentifikasi kemungkinan **{penyakit_target_nama}**, {tanya_lower} Bagaimana frekuensinya?",
+            f"Catatan gejala Anda sudah diperbarui. Sebagai langkah analisis lebih lanjut, {tanya_lower}",
+            f"Untuk mengerucutkan analisis, saya perlu tahu: {tanya_lower}",
+            f"{pertanyaan_utuh} (Anda bisa menjawab dengan kata keterangan seperti: sering, kadang-kadang, jarang, atau tidak pernah)",
+            f"Untuk memastikan diagnosis awal yang akurat, {tanya_lower}",
+            f"Sangat penting bagi kami untuk mengevaluasi keluhan ini secara mendalam. {pertanyaan_utuh} Seberapa sering hal itu terjadi?"
         ]
         
         jawaban_bot = random.choice(template_pertanyaan)
