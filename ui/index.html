@@ -41,11 +41,21 @@
                 <p class="hero-description">Sistem pakar cerdas yang membantu Anda mengidentifikasi penyakit lambung berdasarkan gejala yang dialami. Akurat, cepat, dan mudah digunakan.</p>
                 
                 <div class="hero-actions">
-                    <button onclick="mulaiDiagnosa()" class="btn btn-primary btn-large">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M9 2C5.13 2 2 5.13 2 9c0 3.87 3.13 7 7 7 1.53 0 2.94-.5 4.09-1.34l4.63 4.63 1.41-1.41-4.63-4.63C15.5 11.94 16 10.53 16 9c0-3.87-3.13-7-7-7zm0 2c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5z" fill="currentColor"/>
+                    <button onclick="mulaiChatbot()" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
-                        Mulai Diagnosa Sekarang
+                        Konsultasi AI Chatbot 🤖
+                    </button>
+                    <button onclick="mulaiDiagnosa()" class="btn btn-secondary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Form Tanya Jawab 📋
                     </button>
                 </div>
 
@@ -132,6 +142,71 @@
                                 <span class="team-value">4. 152024053 Fadhlan Muhammad Dhafin</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chatbot Page (Antarmuka Chat di Tengah) -->
+        <section id="chatbotPage" class="chatbot-page" style="display: none;">
+            <div class="chatbot-container">
+                <div class="chat-card">
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <button onclick="kembaliKeHome()" class="btn-back">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Kembali
+                        </button>
+                        <div class="chat-header-title">
+                            <div class="chat-bot-icon">🤖</div>
+                            <div class="chat-bot-info">
+                                <h3>GastroCare AI Chatbot</h3>
+                                <span class="status-online">● Online (NLP Engine)</span>
+                            </div>
+                        </div>
+                        <button onclick="resetChatbot()" class="btn-reset-chat" title="Reset Percakapan">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 4v6h-6M1 20v-6h6"></path>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Chat History Area -->
+                    <div class="chat-history" id="chatHistory">
+                        <!-- Pesan akan masuk di sini secara dinamis -->
+                    </div>
+
+                    <!-- Quick Suggestions (Saran Pertanyaan) -->
+                    <div class="chat-suggestions" id="chatSuggestions">
+                        <button class="suggestion-chip" onclick="kirimSaran('Saya merasa mual dan perut kembung')">
+                            <span>🤢</span> Mual & Kembung
+                        </button>
+                        <button class="suggestion-chip" onclick="kirimSaran('Ulu hati saya terasa perih sehabis makan pedas')">
+                            <span>🌶️</span> Ulu Hati Perih
+                        </button>
+                        <button class="suggestion-chip" onclick="kirimSaran('Mulut terasa asam dan dada terasa panas terbakar')">
+                            <span>🔥</span> Mulut Asam & Dada Panas
+                        </button>
+                        <button class="suggestion-chip" onclick="kirimSaran('Perut kram melilit dan saya diare sejak pagi')">
+                            <span>🌀</span> Kram Perut & Diare
+                        </button>
+                    </div>
+
+                    <!-- Chat Input Area (Textbox di tengah) -->
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <textarea id="chatInput" placeholder="Ceritakan gejala lambung yang Anda rasakan di sini..." rows="1" onkeydown="handleChatKeydown(event)"></textarea>
+                            <button onclick="kirimPesanChat()" id="btnKirimChat" class="btn-send-chat">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="chat-disclaimer">Diagnosis prediktif berbasis Certainty Factor. Selalu konsultasikan keluhan serius ke dokter.</p>
                     </div>
                 </div>
             </div>
