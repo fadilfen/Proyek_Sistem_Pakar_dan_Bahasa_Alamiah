@@ -38,6 +38,7 @@ function mulaiDiagnosa() {
 
 function kembaliKeHome() {
     document.getElementById('diagnosaPage').style.display = 'none';
+    document.getElementById('chatbotPage').style.display = 'none';
     document.getElementById('landingPage').style.display = 'block';
     currentQuestionIndex = 0;
     userAnswers = {};
@@ -267,6 +268,240 @@ function closeModal() {
 function diagnosaBaru() {
     closeModal();
     setTimeout(() => mulaiDiagnosa(), 300);
+}
+
+// ===== CHATBOT FUNCTIONS =====
+let chatSessionId = null;
+let chatIsTyping = false;
+
+function mulaiChatbot() {
+    document.getElementById('landingPage').style.display = 'none';
+    document.getElementById('chatbotPage').style.display = 'block';
+    resetChatbot();
+}
+
+function resetChatbot() {
+    const chatHistory = document.getElementById('chatHistory');
+    chatHistory.innerHTML = '';
+    
+    // Tampilkan kembali input & suggestions jika sebelumnya disembunyikan
+    document.getElementById('chatSuggestions').style.display = 'flex';
+    document.querySelector('.chat-input-container').style.display = 'block';
+    
+    const chatInput = document.getElementById('chatInput');
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+    
+    showTypingIndicator();
+    
+    fetch('/chatbot/session', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        hideTypingIndicator();
+        chatSessionId = data.session_id;
+        tampilkanPesanChat('bot', data.message);
+    })
+    .catch(err => {
+        console.error(err);
+        hideTypingIndicator();
+        tampilkanPesanChat('bot', 'Gagal memuat sesi chatbot. Silakan klik reset atau kembali ke halaman utama.');
+    });
+}
+
+function tampilkanPesanChat(pengirim, pesan, hasilDiagnosa = null) {
+    const chatHistory = document.getElementById('chatHistory');
+    
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${pengirim}`;
+    bubble.innerHTML = parseMarkdown(pesan);
+    
+    if (hasilDiagnosa && pengirim === 'bot') {
+        const hasilUtama = hasilDiagnosa.hasil_utama;
+        
+        const cardResult = document.createElement('div');
+        cardResult.className = 'chat-result-card';
+        cardResult.style.marginTop = '16px';
+        cardResult.style.padding = '16px';
+        cardResult.style.borderRadius = '12px';
+        cardResult.style.background = 'linear-gradient(135deg, rgba(0, 102, 255, 0.08), rgba(0, 200, 83, 0.08))';
+        cardResult.style.border = '2px solid var(--primary-blue)';
+        
+        cardResult.innerHTML = `
+            <div style="font-size: 13px; font-weight: 700; color: var(--primary-blue); text-transform: uppercase; margin-bottom: 8px;">Kecocokan Tertinggi</div>
+            <h4 style="font-size: 18px; margin: 0 0 12px 0; color: var(--neutral-900); font-family: var(--font-secondary);">${hasilUtama.penyakit}</h4>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 14px; font-weight: 600; color: var(--neutral-700);">Certainty Factor:</span>
+                <span style="font-size: 22px; font-weight: 800; color: var(--primary-blue); font-family: var(--font-secondary);">${(hasilUtama.cf * 100).toFixed(1)}%</span>
+            </div>
+            <div class="cf-bar-container" style="background: var(--white); height: 12px; margin-bottom: 16px;">
+                <div class="cf-bar-fill" style="width: 0%;" data-width="${hasilUtama.cf * 100}"></div>
+            </div>
+            <button id="btnBukaLaporan" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 10px; font-size: 14px; border-radius: var(--radius-sm);">
+                Lihat Detail & Solusi Lengkap 📋
+            </button>
+        `;
+        bubble.appendChild(cardResult);
+        
+        cardResult.querySelector('#btnBukaLaporan').onclick = function() {
+            bukaLaporanLengkap(hasilDiagnosa);
+        };
+        
+        setTimeout(() => {
+            cardResult.querySelector('.cf-bar-fill').style.width = (hasilUtama.cf * 100) + '%';
+        }, 200);
+        
+        document.getElementById('chatSuggestions').style.display = 'none';
+        document.querySelector('.chat-input-container').style.display = 'none';
+    }
+    
+    chatHistory.appendChild(bubble);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+function bukaLaporanLengkap(hasilDiagnosa) {
+    tampilkanHasil(hasilDiagnosa);
+}
+
+function showTypingIndicator() {
+    const chatHistory = document.getElementById('chatHistory');
+    
+    const indicator = document.createElement('div');
+    indicator.className = 'typing-indicator';
+    indicator.id = 'chatTypingIndicator';
+    indicator.innerHTML = `
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+    `;
+    
+    chatHistory.appendChild(indicator);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+    chatIsTyping = true;
+}
+
+function hideTypingIndicator() {
+    const indicator = document.getElementById('chatTypingIndicator');
+    if (indicator) {
+        indicator.remove();
+    }
+    chatIsTyping = false;
+}
+
+function kirimPesanChat(pesanKustom = null) {
+    if (chatIsTyping) return;
+    
+    const input = document.getElementById('chatInput');
+    const pesan = pesanKustom || input.value.trim();
+    
+    if (!pesan) return;
+    
+    tampilkanPesanChat('user', pesan);
+    
+    if (!pesanKustom) {
+        input.value = '';
+        input.style.height = 'auto';
+    }
+    
+    showTypingIndicator();
+    
+    fetch('/chatbot/message', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            session_id: chatSessionId,
+            message: pesan
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('Respon server bermasalah');
+        return res.json();
+    })
+    .then(data => {
+        hideTypingIndicator();
+        tampilkanPesanChat('bot', data.jawaban_bot, data.hasil_diagnosa);
+    })
+    .catch(err => {
+        console.error(err);
+        hideTypingIndicator();
+        tampilkanPesanChat('bot', 'Maaf, terjadi kesalahan saat menghubungi server. Mohon coba mengirim ulang pesan Anda.');
+    });
+}
+
+function kirimSaran(teks) {
+    kirimPesanChat(teks);
+}
+
+function handleChatKeydown(e) {
+    const textarea = e.target;
+    
+    setTimeout(() => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }, 0);
+    
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        kirimPesanChat();
+    }
+}
+
+function parseMarkdown(teks) {
+    if (!teks) return '';
+    
+    let lines = teks.split('\n');
+    let inList = false;
+    let result = [];
+    
+    for (let line of lines) {
+        let trimmed = line.trim();
+        
+        if (trimmed.startsWith('- ')) {
+            if (!inList) {
+                result.push('<ul>');
+                inList = true;
+            }
+            let itemText = trimmed.substring(2);
+            itemText = formatInlineMarkdown(itemText);
+            result.push(`<li>${itemText}</li>`);
+            continue;
+        } else {
+            if (inList) {
+                result.push('</ul>');
+                inList = false;
+            }
+        }
+        
+        if (trimmed.startsWith('### ')) {
+            result.push(`<h3>${formatInlineMarkdown(trimmed.substring(4))}</h3>`);
+        } else if (trimmed.startsWith('#### ')) {
+            result.push(`<h4>${formatInlineMarkdown(trimmed.substring(5))}</h4>`);
+        } else if (trimmed === '---') {
+            result.push('<hr>');
+        } else if (trimmed.length > 0) {
+            result.push(`<p>${formatInlineMarkdown(trimmed)}</p>`);
+        } else {
+            result.push('<br>');
+        }
+    }
+    
+    if (inList) {
+        result.push('</ul>');
+    }
+    
+    return result.join('\n');
+}
+
+function formatInlineMarkdown(text) {
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    return text;
 }
 
 // ===== SMOOTH SCROLL =====
